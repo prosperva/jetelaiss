@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />
+    <title>Breaking It Off</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="HandheldFriendly" content="true" />    
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0" />
+    <!--  stylesheets -->
+    <link href="css/jquery.mobile-1.0a4.min.css" rel="stylesheet" type="text/css"/>
+    <link href="css/stopsmoke.css" rel="stylesheet" type="text/css"/>
+    
+    <!--  javascript  -->
+    <script src="js/jquery-mobile/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/jquery-mobile/jquery-ui-1.8.16.custom.min.js"></script>         
+    <script type="text/javascript" src="js/json2.js"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript" src="js/flot/jquery.flot.js" language="javascript"></script>
+    <script type="text/javascript" src="js/phonegap-1.2.0.min.js"></script>
+    <script type="text/javascript" src="js/GoogleAnalyticsPlugin.js"></script>
+    <script type="text/javascript" src="js/childbrowser.js"></script>
+    <script type="text/javascript" src="js/facebook.js"></script>
+    <script type="text/javascript" src="js/trophys.js"></script>
+    <script type="text/javascript" src="js/map.js"></script>
+    <script type="text/javascript" src="js/graph.js"></script>
+    <script type="text/javascript" src="js/triggers.js"></script>
+    <script type="text/javascript" src="js/data.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/jquery-mobile/jquery.mobile-1.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="js/jquery.mobile.scrollview.js"></script>
+    <script type="text/javascript" src="js/scrollview.js"></script>    
+    
+    <script type="text/javascript">
+        var footerHeight = 0;
+        var headerHeight = 0;
+        var firstTimeHF = true;
+        
+        $(window).bind('orientationchange', function(){
+            calculatePageSizes();
+        });
+        
+        function calculatePageSizes()
+        {
+            var newFooter = $('.pageFooter').outerHeight();
+            var newHeader = 0;
+            var gettingStarted = false;
+            if( $('.ui-page-active').attr('id') == "getting_started")
+            {
+                gettingStarted = true;
+                headerHeight = newHeader = $('.logo-header').outerHeight();
+                newFooter = 0;
+            }
+            else
+                newHeader = $('.pageHeader').outerHeight();
+            
+            if((footerHeight == 0 && firstTimeHF) || (footerHeight > newFooter && !firstTimeHF))
+            {
+                if(newFooter > 0)
+                {
+                    footerHeight = newFooter;  
+                }
+            }
+            if((headerHeight == 0 && firstTimeHF) || (headerHeight > newHeader && !firstTimeHF))
+            {
+                if(newHeader > 0)
+                {
+                    headerHeight = newHeader;
+                }
+            }                          
+            
+            if(headerHeight > 0 && footerHeight > 0 && !gettingStarted)
+            firstTimeHF = false;
+            
+            var windowHeight = $(window).innerHeight();
+            if(windowHeight < $(window).innerWidth())
+            windowHeight = $(window).innerWidth();
+            
+            var newHeight = windowHeight - (headerHeight + footerHeight);                                    
+            
+            $('.scroll-wrapper').css('height', newHeight + 'px');
+            $('.scroll-wrapper').css('min-height', newHeight + 'px'); 
+            $('.scroll-wrapper').css('max-height', newHeight + 'px');  
+            
+            if( $('.ui-page-active').attr('id') == "getting_started")
+            {
+                $("#getting_started-scroll").scrollview("resetScrollSize");
+                $("#getting_started-scroll").scrollview("scrollTo", 0, 0, 0);
+            }
+        }
+        
+        $(":jqmData(role='page')").live('pageshow', function(event){
+            calculatePageSizes();
+                                        // Track an event in your application
+                                        // more here : http://code.google.com/apis/analytics/docs/tracking/eventTrackerGuide.html
+                                        //googleAnalytics.trackEvent("Overlay", "cigarettes", "label goes here", 666);
+        });
+        
+        // calculate width of summary list
+        $("#chart").live( "pageshow", function(event) {
+            var sum = 0;
+            $('#summary-list li').each( function(){ sum += $(this).outerWidth(); });
+            $('#summary-list').width( sum );
+        });          
+        
+        
+    </script>
+</head>
+<!--    window.top.scrollTo(0,1); -->
+<body onload="initializeApp();">
+    
+<div id="dimmed" ontouchmove="blockScrollDuringPopup(event);"></div><!---->
+    
+    <div class="custom-dialog" ontouchmove="disableWebbScroll(event);">
+        <h1 id="dialogText">Add Craving?</h1>
+        <div style="width:100%;text-align:center;">
+            <a id="dialog_true" class="custom-dialog-true">Oui</a> &nbsp; <a id="dialog_false" class="custom-dialog-false">Non</a>
+        </div>
+    </div>
+
+<div id="splash" class="splash" data-role="page">
+</div>
+    
+ <!--///////////////////////////////////////////////////////////////// START TRIGGERS LANDING PAGE-->
+<div data-role="page" id="triggers" ontouchmove="disableWebbScroll(event);">
+		<div data-role="content" style="padding:0;">
+                        <div class="button-header pageHeader" ontouchmove="disableWebbScroll(event);">
+                                <a onclick="showSlipups();"><img src="images/icon_slipping.png" class="left-header-btn" /></a>
+                                <a onclick="showInstructions(true,false);"><img src="images/icon_fb.png" class="right-header-btn" /></a>
+                                <img class="button-header-img" src="images/header_640_3.png" alt="Je Te Laisse" />
+                        </div>
+                        <div class="clear"></div>
+                    <div id="trigger-scroll" class="scroll-wrapper" data-scroll="y" style="overflow:scroll;">
+                        <ul data-role="listview" id="cravingsList" name="cravingsList" style="margin:0;">
+                                <li data-icon="false" title="#trigger_stressed" name="Je suis stressé(e)" onclick="promtAddCraving(this)">
+                                    <a>Je suis stressé(e)</a>
+                                </li>
+                                <li data-icon="false" title="#trigger_bored" name="Je m’ennuie" onclick="promtAddCraving(this)">
+                                    <a>Je m’ennuie</a>
+                                </li>
+                                <li data-icon="false" title="#trigger_tipsy" name="Je prends un verre" onclick="promtAddCraving(this)">
+                                    <a>Je prends un verre</a>
+                                </li>
+                                <li data-icon="false" title="#trigger_cant_concentrate" name="Je n’arrive pas à me concentrer" onclick="promtAddCraving(this)">
+                                    <a>Je n’arrive pas à me concentrer</a>
+                                </li>
+                                <li data-icon="false" title="#trigger_cant_relax" name="Je n’arrive pas à me détendre" onclick="promtAddCraving(this)">
+                                    <a>Je n’arrive pas à me détendre</a>
+                                </li>
+                                <li data-icon="false" title="#trigger_stuffed" name="Je suis gavé(e)" onclick="promtAddCraving(this)">
+                                    <a>Je suis gavé(e)</a>
+                                </li>
+                                <li data-icon="false" title="#trigger_with_smokers" name="Je suis en compagnie de fumeurs" onclick="promtAddCraving(this)">
+                                    <a>Je suis en compagnie de fumeurs</a>
+                                </li>
+                                <li data-icon="false" title="#trigger_angry" name="Je suis en colère" onclick="promtAddCraving(this)">
+                                    <a>Je suis en colère</a>
+                                </li>
+                                <li data-icon="false" style="background:transparent;border:none;">
+                                    <div style="width:100%;text-align:center;">
+                                        <form id="trigger-submit-form" name="trigger-submit-form" method="post" action="javascript:addTrigger();">
+                                        <div style="text-align:left;">
+                                        <div class="custom-input-wrapper"><!--<input type="text" name="textinput" maxlength="25" id="textinput" class="custom-trigger-input" value="Ajoutez votre élément déclencheur personnel" />--><textarea name="textinput" maxlength="25" id="textinput" class="custom-trigger-input">Ajoutez votre déclencheur personnel</textarea></div><img class="custom-trigger-submit" src="images/btn_add.png" alt="+" onclick="addTrigger();"/>
+                                        <br class="clear" />
+                                        </div>
+                                        </form>
+                                    </div>
+                                </li>
+                        </ul>
+                 </div>
+            <!-- call a coach footer -->                
+            <div data-role="footer" class="call-footer pageFooter" ontouchmove="disableWebbScroll(event);">
+                <div class="call-footer-wrapper">
+                    <a href="tel:+18663663667" ontouchstart="javascript:window.plugins.googleAnalyticsPlugin.trackEvent('Outbound', 'call', 'quit_coach', 0);" class="call-link"></a>
+                    <img src="images/icon_phone.png" class="call-footer-icon"/>
+                    <div class="call-footer-text">Appeler un spécialiste de l’abondon du tabac</div><!-- style="font-family:arial !important;"-->
+                    
+                </div>
+            </div>    
+		</div>            
+</div>
+<!--END TRIGGERS LANDING PAGE--> 
+
+<!--///////////////////////////////////////////////////////////////////// START OF ALL TRIGGER PAGES--> 
+
+    
+    <!--TRIGGER 1 GENERIC-->
+    <div data-role="page" id="trigger_generic" class="trigger-page" ontouchmove="disableWebbScroll(event);">
+		<div data-role="content" style="padding:0;">
+            <!-- header -->
+            <div class="button-header pageHeader" ontouchmove="disableWebbScroll(event);">
+                <a href="#triggers"><img src="images/icon_back.png" class="left-header-btn" /></a>
+                <a onclick="showInstructions(true,false);"><img src="images/icon_fb.png" class="right-header-btn" /></a>
+                <img class="button-header-img" src="images/header_640_3.png" alt="Break it off" />
+            </div>
+            <div id="trigger_generic-scroll" class="scroll-wrapper" data-scroll="y">
+                <!-- trigger content -->
+                <div class="trigger-content">
+                    <h1 id="trigger-generic-text">Generic</h1>
+                    <p>Tenez bon, vos envies VONT s’estomper. Elles le font toujours, vous n’avez qu’à suivre le rythme. Si vous le pouvez, buvez de l’eau lentement. Et regardez ce clip qui vous aidera à ne plus y penser.</p>
+                    
+                    <div id="randomContent1" class="thumbnail-wrapper" style="display:none;"> 
+                        <img title="http://www.youtube.com/watch?v=z3U0udLH974" onclick="showExternal(this);" src="images/icon_cats.png" class="thumbnail-icon" />
+                        <div class="thumbnail-text">
+                            <p>Des chats<br />qui jasent</p>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    
+                    <div id="randomContent2" class="thumbnail-wrapper" style="display:none;"> 
+                        <img title="http://www.youtube.com/watch?v=xQItOZvIC6A" onclick="showExternal(this);" src="images/icon_horses.png" class="thumbnail-icon" />
+                        <div class="thumbnail-text">
+                            <p>Des chevaux<br />au galop</p>
+                        </div>
+                        <div class="clear"></div>
+                    </div>                    
+                    
+                    <div id="randomContent3" class="thumbnail-wrapper" style="display:none;"> 
+                        <img title="http://www.youtube.com/watch?v=huuWjTL2dIo" onclick="showExternal(this);" src="images/icon_fish.png" class="thumbnail-icon" />
+                        <div class="thumbnail-text">
+                            <p>Poisson<br />incroyables</p>
+                        </div>
+                        <div class="clear"></div>
+                    </div>                     
+                    
+                    <br />
+                </div>
+            </div>
+            <!-- call a coach footer -->           
+            <div data-role="footer" class="call-footer pageFooter" ontouchmove="disableWebbScroll(event);">
+                <div class="call-footer-wrapper">
+                    <a href="tel:+18663663667" ontouchstart="javascript:window.plugins.googleAnalyticsPlugin.trackEvent('Outbound', 'call', 'quit_coach', 0);" class="call-link"></a>
+                    <img src="images/icon_phone.png" class="call-footer-icon" />
+                    <div class="call-footer-text">Appeler un spécialiste de l’abandon du tabac </div>
+                </div>
+            </div>            
+            
+        </div>    
+    </div>
+    <!--END TRIGGER 1 GENERIC--> 
+    
+<!--TRIGGER 1 STRESSED-->
+<div data-role="page" id="trigger_stressed" class="trigger-page" ontouchmove="disableWebbScroll(event);">
+		<div data-role="content" style="padding:0;">
+                    <!-- header -->
+                    <div class="button-header pageHeader" ontouchmove="disableWebbScroll(event);">
+                            <a href="#triggers"><img src="images/icon_back.png" class="left-header-btn" /></a>
+                            <a onclick="showInstructions(true,false);"><img src="images/icon_fb.png" class="right-header-btn" /></a>
+                            <img class="button-header-img" src="images/header_640_3.png" alt="Break it off" />
+                    </div>
+            <div id="trigger_stressed-scroll" class="scroll-wrapper" data-scroll="y">
+                    <!-- trigger content -->
+                    <div class="trigger-content">
+                            <h1>Je suis stressé(e)</h1>
+                            <p>La cigarette ne vous calmera pas; elle ne l’a jamais fait. Elle ne fera qu’augmenter sournoisement votre tension artérielle au moment où vous vous y attendrez le moins. Vous n’avez pas à vivre tout cela à nouveau. Prenez plutôt quelques minutes pour écouter cette chanson.</p>
+                        
+                        <div class="thumbnail-wrapper"> 
+                            <img title="http://www.youtube.com/watch?v=3kvWClaJKd8" onclick="showExternal(this);" src="images/icon_classical.png" class="thumbnail-icon" />
+                            <div class="thumbnail-text">
+                                <p>Musique<br />Classique</p>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        
+                        <br />
+                    </div> 
+                    </div> 
+                    <!-- call a coach footer -->           
+                    <div data-role="footer" class="call-footer pageFooter" ontouchmove="disableWebbScroll(event);">
+                        <div class="call-footer-wrapper">
+                            <a href="tel:+18663663667" ontouchstart="javascript:window.plugins.googleAnalyticsPlugin.trackEvent('Outbound', 'call', 'quit_coach', 0);" class="call-link"></a>
+                            <img src="images/icon_phone.png" class="call-footer-icon" />
+                            <div class="call-footer-text">Appeler un spécialiste de l’abondon du tabac</div>
+                        </div>
+                    </div>   
+        </div>             
+</div>
+<!--END TRIGGER 1 STRESSED--> 
+
+<!--TRIGGER 2 BORED-->
+<div data-role="page" id="trigger_bored" class="trigger-page" ontouchmove="disableWebbScroll(event);">
+
+		<div data-role="content" style="padding:0;">
+                        <!-- header -->
+                        <div class="button-header pageHeader" ontouchmove="disableWebbScroll(event);">
+                                <a href="#triggers"><img src="images/icon_back.png" class="left-header-btn" /></a>
+                                <a onclick="showInstructions(true,false);"><img src="images/icon_fb.png" class="right-header-btn" /></a>
+                                <img class="button-header-img" src="images/header_640_3.png" alt="Break it off" />
+                        </div>
+            <div id="trigger_bored-scroll" class="scroll-wrapper" data-scroll="y">   
+                        <!-- trigger content -->
+                        <div class="trigger-content">
+                            <h1>Je m’ennuie</h1>
+                                <p>
+                                Fumer peut vous donner l’impression de combattre l’ennui. MENSONGES! Voici ce qui se passe réellement : lorsque tu as une dépendance au tabac et que tu n'as pas de cigarettes, tu as toujours l'impression qu'il te manque quelque chose. Ce qui est étrange, c'est que la cigarette ne te manque pas tant que ça quand ton esprit est occupé. Si vous voulez quelque chose à faire, essayez de répéter ces phrases très vite:
+                                </p>
+                            <!--<h3>Le défi du virelangue</h3>-->
+                                <p>
+                                    Un chasseur sachant chasser doit savoir chasser sans son chien.<br /><br />
+                                    Sachez, mon cher Sasha, que Natasha n'attacha pas son chat !<br /><br />
+                                    J'ai vu six sots suçant six cent six saucisses, six en sauce et six cents sans sauce.<br /><br />
+                                    Le fisc fixe exprès chaque taxe fixe excessive exclusivement au luxe et à l'acquis.<br /><br />
+                                    Pauvre petit pêcheur, prend patience pour pouvoir prendre plusieurs petits poissons.<br /><br />
+                                    Ces Basques se passent ce casque et ce masque jusqu'à ce que ce masque et ce casque se cassent.<br /><br />
+                                    Mur pourrit, trou s'y fit, rat s'y mit; chat l'y vit, rat s'enfuit; chat suivit, rat fut pris.
+                                </p>
+                        </div>
+                    </div>    
+                    <!-- call a coach footer -->           
+                    <div data-role="footer" class="call-footer pageFooter" ontouchmove="disableWebbScroll(event);">
+                        <div class="call-footer-wrapper">
+                            <a href="tel:+18663663667" onclick="javascript:window.plugins.googleAnalyticsPlugin.trackEvent('Outbound', 'call', 'quit_coach', 0);" class="call-link"></a>
+                            <img src="images/icon_phone.png" class="call-footer-icon" />
+                            <div class="call-footer-text">Appeler un spécialiste de l’abondon du tabac</div>
+                        </div>
+                    </div>  
+		</div>  
+</div>
+<!--END TRIGGER 2 BORED--> 
+
+<!--TRIGGER 3 TIPSY-->
+<div data-role="page" id="trigger_tipsy" class="trigger-page" ontouchmove="disableWebbScroll(event);">
+		<div data-role="content" style="padding:0;">
+                        <!-- header -->
+                        <div class="button-header pageHeader" ontouchmove="disableWebbScroll(event);">
+                                <a href="#triggers"><img src="images/icon_back.png" class="left-header-btn" /></a>
+                                <a onclick="showInstructions(true,false);"><img src="images/icon_fb.png" class="right-header-btn" /></a>
+                                <img class="button-header-img" src="images/header_640_3.png" alt="Break it off" />
+                        </div> 
+                    <div id="trigger_tipsy-scroll" class="scroll-wrapper" data-scroll="y">            
+                        <!-- trigger content -->
+                        <div class="trigger-content">
+                                <h1>Je prends un verre</h1>
+                                <p>
+                                    Fumer peut sembler invitant après quelques consommations. NE CÉDEZ PAS À LA TENTATION! Vous regretterez et vous risquez de recommencer pour de bon. Essayez plutôt ceci:
+                                </p>
+                                <!--<br />
+                                <p>
+                                    Get 1 ice cube.<br />
+                                    Melt it in your mouth as fast as you can.<br />
+                                    Now try to beat your record.<br />
+                                </p>-->
+                                <h3>Le défi du cube de glace</h3>
+                                <ul id="challenge-list">
+                                    <li><p>Prenez un cube de glace.</p></li>
+                                    <li><p>Faites le fondre dans votre bouche le plus rapidement possible.</p></li>
+                                    <li><p>Ensuite, essayez de battre votre record.</p></li>
+                                </ul>
+                                    <p>Prêt? Partez</p>
+                            
+                                <a onClick="startTimer();" id="button_timer" 
+                                    class="slip-up-submit">Débuter</a>
+                                <br />
+                        </div>
+                    </div>
+                    <!-- call a coach footer -->           
+                    <div data-role="footer" class="call-footer pageFooter" ontouchmove="disableWebbScroll(event);">
+                        <div class="call-footer-wrapper">
+                            <a href="tel:+18663663667" ontouchstart="javascript:window.plugins.googleAnalyticsPlugin.trackEvent('Outbound', 'call', 'quit_coach', 0);" class="call-link"></a>
+                            <img src="images/icon_phone.png" class="call-footer-icon" />
+                            <div class="call-footer-text">Appeler un spécialiste de l’abandon du tabac</div>
+                        </div>
+                    </div>              
+		</div>  
+</div>
+<!--END TRIGGER 3 TIPSY--> 
+
+<!--TRIGGER 4 CANT CONCENTRATE-->
+<div data-role="page" id="trigger_cant_concentrate" class="trigger-page" ontouchmove="disableWebbScroll(event);">
+		<div data-role="content" style="padding:0;">
+                        <!-- header -->
+                        <div class="button-header pageHeader" ontouchmove="disableWebbScroll(event);">
+                                <a href="#triggers"><img src="images/icon_back.png" class="left-header-btn" /></a>
+                                <a onclick="showInstructions(true,false);"><img src="images/icon_fb.png" class="right-header-btn" /></a>
+                                <img class="button-header-img" src="images/header_640_3.png" alt="Break it off" />
+                        </div>
+                    <div id="trigger_cant_concentrate-scroll" class="scroll-wrapper" data-scroll="y">
+                        <!-- trigger content -->                    
+                        <div class="trigger-content">
+                            <h1>Je n’arrive pas à me concentrer</h1>
+                            <p>Fumer ne vous aidera pas à mieux vous concentrer. Cela va plutôt bloquer vos artères et provoquer une diminution du débit d’oxygène vers le cerveau, rendant difficile la concentration. Ne croyez pas ces balivernes. Si vous devez vous concentrer, portez donc votre attention sur ceci:</p>
+                            <br />
+                            <img src="images/content/illusion1.jpg" style="width:100%;border:1px solid #fff;" />
+                            <br /><br />
+                            <img src="images/content/illusion2.jpg" style="width:100%;border:1px solid #fff;" />
+                            <br /><br />
+                            <img src="images/content/illusion3.jpg" style="width:100%;border:1px solid #fff;" />
+                            <br /><br />                                                     
+                        </div>
+                    </div>
+                <!-- call a coach footer -->           
+                <div data-role="footer" class="call-footer pageFooter" ontouchmove="disableWebbScroll(event);">
+                    <div class="call-footer-wrapper">
+                        <a href="tel:+18663663667" ontouchstart="javascript:window.plugins.googleAnalyticsPlugin.trackEvent('Outbound', 'call', 'quit_coach', 0);" class="call-link"></a>
+                        <img src="images/icon_phone.png" class="call-footer-icon" />
+                        <div class="call-footer-text">Appeler spécialiste de l’abondon du tabac</div> 
+                    </div>
+                </div>              
+            
+		</div>  
+</div>
+<!--END TRIGGER 4 CANT CONCENTRATE--> 
+
+<!--TRIGGER 5 CANT RELAX-->
+<div data-role="page" id="trigger_cant_relax" class="trigger-page" ontouchmove="disableWebbScroll(event);">
+            <div data-role="content" style="padding:0;">
+                    <!-- header -->
+                    <div class="button-header pageHeader" ontouchmove="disableWebbScroll(event);">
+                            <a href="#triggers"><img src="images/icon_back.png" class="left-header-btn" /></a>
+                            <a onclick="showInstructions(true,false);"><img src="images/icon_fb.png" class="right-header-btn" /></a>
+                            <img class="button-header-img" src="images/header_640_3.png" alt="Break it off" />
+                    </div>
+                <div id="trigger_cant_relax-scroll" class="scroll-wrapper" data-scroll="y">
+                    <!-- trigger content -->
+                    <div class="trigger-content">
+                            <h1>Je n’arrive pas à me détendre</h1>
+                            <p>Fumer ne vous aidera pas à vous détendre; au contraire, cela va accélérer votre rythme cardiaque, augmenter votre tension artérielle et vous aurez le souffle court. La cigarette est un monstre cruel et sans pitié. Si vous voulez relaxer, trouvez un endroit calme et essayez ceci :</p>
+                            
+                            <div class="thumbnail-wrapper"> 
+                                <img title="http://www.youtube.com/watch?v=ZyP_d7EdOY4" onclick="showExternal(this);" src="images/icon_yoga.png" class="thumbnail-icon" />
+                                <div class="thumbnail-text">
+                                    <p>Vidéo<br />de Yoga</p>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        
+                            <br />
+                    </div>
+                </div>    
+                <!-- call a coach footer -->           
+                <div data-role="footer" class="call-footer pageFooter" ontouchmove="disableWebbScroll(event);">
+                    <div class="call-footer-wrapper">
+                        <a href="tel:+18663663667" ontouchstart="javascript:window.plugins.googleAnalyticsPlugin.trackEvent('Outbound', 'call', 'quit_coach', 0);" class="call-link"></a>
+                        <img src="images/icon_phone.png" class="call-footer-icon" />
+                        <div class="call-footer-text">Appeler un spécialiste de l’abandon du tabac </div>
+                    </div>
+                </div>  
+                
+                
+            </div>  
+</div>
+<!--END TRIGGER 5 CANT RELAX--> 
+
+<!--TRIGGER 6 STUFFED-->
+<div data-role="page" id="trigger_stuffed" class="trigger-page" ontouchmove="disableWebbScroll(event);">
+            <div data-role="content" style="padding:0;">
+                    <!-- header -->
+                    <div class="button-header pageHeader" ontouchmove="disableWebbScroll(event);">
+                            <a href="#triggers"><img src="images/icon_back.png" class="left-header-btn" /></a>
+                            <a onclick="showInstructions(true,false);"><img src="images/icon_fb.png" class="right-header-btn" /></a>
+                            <img class="button-header-img" src="images/header_640_3.png" alt="Break it off" />
+                    </div>
+                <div id="trigger_stuffed-scroll" class="scroll-wrapper" data-scroll="y">
+                    <!-- trigger content -->      
+                    <div class="trigger-content">
+                            <h1>Je suis gavé(e)</h1>
+                            <p>Maintenant que vous avez comblé votre faim, cette cigarette doit paraître très alléchante. Ne succombez pas. Donnez-lui un peu de temps, l’envie va s’estomper. Et pour vous aider à passer le temps, regardez ces magnifiques paysages.</p>
+                            <br />
+                            <img src="images/content/landscape1.jpg" style="width:100%;border:1px solid #fff;" /><br />
+                            <p class="smaller">Photo prise par: <a href="#" title="http://www.flickr.com/photos/_leon10_/" onclick="showExternal(this);" rel="external" style="color:#fff">_Leon10_</a></p>
+                            <br />
+                            <img src="images/content/landscape2.jpg" style="width:100%;border:1px solid #fff;" /><br />
+                            <p class="smaller">Photo prise par: <a href="#" title="http://www.flickr.com/photos/1banaan/" onclick="showExternal(this);" rel="external" style="color:#fff">1banaan</a></p>                          
+                            <br />
+                            <img src="images/content/landscape3.jpg" style="width:100%;border:1px solid #fff;" /><br />
+                            <p class="smaller">Photo prise par: <a href="#" title="http://www.flickr.com/photos/catsper/" onclick="showExternal(this);" rel="external" style="color:#fff">catsper</a></p>                          
+                            <br />
+                            <img src="images/content/landscape4.jpg" style="width:100%;border:1px solid #fff;" /><br />
+                            <p class="smaller">Photo prise par: <a href="#" title="http://www.flickr.com/photos/10211031@N03/" onclick="showExternal(this);" rel="external" style="color:#fff">cstrom</a></p>                            
+                            <br />
+                            <img src="images/content/landscape5.jpg" style="width:100%;border:1px solid #fff;" /><br />
+                            <p class="smaller">Photo prise par: <a href="#" title="http://www.flickr.com/photos/navin75/" onclick="showExternal(this);" rel="external" style="color:#fff">Navin75</a></p>
+                            <br />  
+                    </div>
+               </div>     
+                <!-- call a coach footer -->           
+                <div data-role="footer" class="call-footer pageFooter" ontouchmove="disableWebbScroll(event);">
+                    <div class="call-footer-wrapper">
+                        <a href="tel:+18663663667" ontouchstart="javascript:window.plugins.googleAnalyticsPlugin.trackEvent('Outbound', 'call', 'quit_coach', 0);" class="call-link"></a>
+                        <img src="images/icon_phone.png" class="call-footer-icon" />
+                        <div class="call-footer-text">Appeler un spécialiste de l’abondon du tabac</div>
+                    </div>
+                </div>                 
+                
+            </div>    
+</div>
+<!--END TRIGGER 6 STUFFED--> 
+
+<!--TRIGGER 7 WITH OTHER SMOKERS-->
+<div data-role="page" id="trigger_with_smokers" class="trigger-page" ontouchmove="disableWebbScroll(event);">
+		<div data-role="content" style="padding:0;">
+                        <!-- header -->
+                        <div class="button-header pageHeader" ontouchmove="disableWebbScroll(event);">
+                                <a href="#triggers"><img src="images/icon_back.png" class="left-header-btn" /></a>
+                                <a onclick="showInstructions(true,false);"><img src="images/icon_fb.png" class="right-header-btn" /></a>
+                                <img class="button-header-img" src="images/header_640_3.png" alt="Break it off" />
+                        </div>
+                    <div id="trigger_with_smokers-scroll" class="scroll-wrapper" data-scroll="y">
+                        <!-- trigger content -->      
+                        <div class="trigger-content">                    
+            				<h1>Je suis en compagnie d’autres fumeurs</h1>
+                            <p>
+            				Vos amis fument et vous les enviez. Ça arrive. Mais rappelez-vous, votre abstinence pourrait inspirer un de vos amis à rompre avec la cigarette lui aussi. Vous devez vous occuper l’esprit. Ceci devrait vous aider:
+                            </p>
+                            
+                            <div class="thumbnail-wrapper"> 
+                                <img title="http://www.youtube.com/watch?v=V-f_SWEie8o" onclick="showExternal(this);" src="images/icon_apple.png" class="thumbnail-icon" />
+                                <div class="thumbnail-text">
+                                    <p>Trancher<br />une pomme<br />avec ses mains</p>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            
+                            <br />
+                        </div>
+                    </div> 
+            <!-- call a coach footer -->           
+            <div data-role="footer" class="call-footer pageFooter" ontouchmove="disableWebbScroll(event);">
+                <div class="call-footer-wrapper">
+                    <a href="tel:+18663663667" ontouchstart="javascript:window.plugins.googleAnalyticsPlugin.trackEvent('Outbound', 'call', 'quit_coach', 0);" class="call-link"></a>
+                    <img src="images/icon_phone.png" class="call-footer-icon" />
+                    <div class="call-footer-text">Appeler un spécialiste de l’abondon du tabac</div>
+                </div>       
+            </div>
+    </div>    
+</div>
+<!--END TRIGGER 7 WITH OTHER SMOKERS--> 
+
+<!--TRIGGER 8 ANGRY-->
+<div data-role="page" id="trigger_angry" class="trigger-page" ontouchmove="disableWebbScroll(event);">
+		<div data-role="content" style="padding:0;">
+                        <!-- header -->
+                        <div class="button-header pageHeader" ontouchmove="disableWebbScroll(event);">
+                                <a href="#triggers"><img src="images/icon_back.png" class="left-header-btn" /></a>
+                                <a onclick="showInstructions(true,false);"><img src="images/icon_fb.png" class="right-header-btn" /></a>
+                                <img class="button-header-img" src="images/header_640_3.png" alt="Break it off" />
+                        </div>
+                        <!-- trigger content --> 
+                        <div id="trigger_angry-scroll" class="scroll-wrapper" data-scroll="y">   
+                        <div class="trigger-content">                       
+            				<h1>Je suis en colère</h1>
+            				<p>L’envie de fumer se fait souvent ressentir dans les situations riches en émotions fortes, au moment où vous êtes le plus vulnérable. Cet état est le plus propice à vous faire reprendre vos vieilles habitudes. Ne vous laissez pas abattre. Calmez-vous et prenez quelques grandes inspirations. Trouvez votre jardin de paix. Cela devrait vous aider à surmonter la situation.</p>
+                            
+                            <div class="thumbnail-wrapper"> 
+                                <img title="http://www.youtube.com/watch?v=VWDc9oyBj5Q" onclick="showExternal(this);" src="images/icon_puppy.png" class="thumbnail-icon" />
+                                <div class="thumbnail-text">
+                                    <p>Chiot<br />Mignon</p>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            
+                            <br />
+                        </div>
+                        </div>    
+                <!-- call a coach footer -->           
+                <div data-role="footer" class="call-footer pageFooter" ontouchmove="disableWebbScroll(event);">
+                    <div class="call-footer-wrapper">
+                        <a href="tel:+18663663667" ontouchstart="javascript:window.plugins.googleAnalyticsPlugin.trackEvent('Outbound', 'call', 'quit_coach', 0);" class="call-link"></a>
+                        <img src="images/icon_phone.png" class="call-footer-icon" />
+                        <div class="call-footer-text">Appeler un spécialiste de l’abondon du tabac</div>
+                    </div>
+                </div> 		
+        </div>   
+</div>
+<!--END TRIGGER 8 ANGRY--> 
+
+
+<!--///////////////////////////////////////////////////////////////////// END OF ALL TRIGGER PAGES--> 
+
+<!--///////////////////////////////////////////////////////////////////// SLIPS LANDING PAGE-->
+
+<div data-role="page" id="slip-up" class="trigger-page" ontouchmove="disableWebbScroll(event);">
+		<div data-role="content" style="padding: 0;">
+                        <!-- header -->
+                        <div class="button-header pageHeader" ontouchmove="disableWebbScroll(event);">
+                                <a href="#triggers"><img src="images/icon_back.png" class="left-header-btn" /></a>
+                                <a onclick="showInstructions(true,false);"><img src="images/icon_fb.png" class="right-header-btn" /></a>
+                                <img class="button-header-img" src="images/header_640_3.png" alt="Break it off" />
+                        </div>
+                        <!-- trigger content -->
+                   <div id="slip-up-page-scroll" class="scroll-wrapper" data-scroll="y"> 
+                        <div class="trigger-content"style="margin:0;">                       
+				            <h1>Bon, vous en avez fumé une.</h1>
+				            <!--<p></p>-->
+				            <p>C’est dommage, mais ça arrive. Ne laissez pas cet écart vous empêcher d’arrêter pour de bon.</p>
+				            <h2>Qu’est-ce qui vous a poussé à succomber?</h2>
+				            <form>
+                                    <div class="long_dd">
+                                        <select name="sel_slip_ups" id="sel_slip_ups" onChange="validateSlipup();" data-icon="false">                                 
+                                                        <!--<option value="slip_up_cause" id="slip_ups_head">Slip Up Cause</option>-->
+                                                        <option value="#slip-stressed" id="slip-default">J’étais stressé(e)</option>
+                                                        <option value="#slip-bored">Je m’ennuyais</option>
+                                                        <option value="#slip-tipsy">Je prenais un verre</option>
+                                                        <option value="#slip-cant-concentrate">Je n’arrivais pas à me concentrer</option>
+                                                        <option value="#slip-cant-relax">Je n’arrivais pas à me détendre</option>
+                                                        <option value="#slip-stuffed">Je venais de manger</option>
+                                                        <option value="#slip-with-smokers">J’étais en compagnie de fumeurs</option>
+                                                        <option value="#slip-angry">J’étais en colère</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <a ontouchstart="submitSlipup();return false;" id="slip-up-submit" name="slip-up-submit" class="slip-up-submit">Soumettre</a>
+				            </form>
+                        </div>
+                       </div>
+                <!-- call a coach footer -->           
+                <div data-role="footer" class="call-footer pageFooter" ontouchmove="disableWebbScroll(event);">
+                    <div class="call-footer-wrapper">
+                        <a href="tel:+18663663667" ontouchstart="javascript:window.plugins.googleAnalyticsPlugin.trackEvent('Outbound', 'call', 'quit_coach', 0);" class="call-link"></a>
+                        <img src="images/icon_phone.png" class="call-footer-icon" />
+                        <div class="call-footer-text">Appeler spécialiste de l’abondon du tabac</div>
+                    </div>
+                </div>  		
+        </div>    
+</div>
+<!--END SLIPS--> 
+
+<!--///////////////////////////////////////////////////////////////////// START OF ALL SLIPS PAGES--> 
+
+
+    <!--SLIP BASE-->
+    <div data-role="page" id="slip-base" class="trigger-page" ontouchmove="disableWebbScroll(event);">
+		<div data-role="content" style="padding:0;">
+                    <!-- header -->
+                    <div class="button-header pageHeader" ontouchmove="disableWebbScroll(event);">
+                            <a href="#triggers"><img src="images/icon_back.png" class="left-header-btn" /></a>
+                            <a onclick="showInstructions(true,false);"><img src="images/icon_fb.png" class="right-header-btn" /></a>
+                            <img class="button-header-img" src="images/header_640_3.png" alt="Break it off" />
+                    </div>
+                    <div id="slip-base-scroll" class="scroll-wrapper" data-scroll="y">   
+                    <!-- trigger content -->  
+                    <div class="trigger-content">                          
+                                        <h1>Vous n’avez pas fumé depuis <span class="blue" id="timeBeforeSlip">0 jours!</span></h1>
+                                        <p>Continuez comme ça. Rompre avec la cigarette demande beaucoup d’efforts, mais vous y arriverez si vous tenez bon.
+                                        <br /><br />La prochaine fois que vous ressentirez le besoin de fumer une cigarette, appelez plutôt un spécialiste de l’abandon du tabac. Ils vous aideront à surmonter vos envies et à retrouver le chemin de la réussite. Vous POUVEZ y arriver, à force de persévérance.</p>
+                    </div> 
+                    </div>
+                    <!-- call a coach footer -->           
+                    <div data-role="footer" class="call-footer pageFooter" ontouchmove="disableWebbScroll(event);">
+                        <div class="call-footer-wrapper">
+                            <a href="tel:+18663663667" ontouchstart="javascript:window.plugins.googleAnalyticsPlugin.trackEvent('Outbound', 'call', 'quit_coach', 0);" class="call-link"></a>
+                            <img src="images/icon_phone.png" class="call-footer-icon" />
+                            <div class="call-footer-text">Appeler un spécialiste de l’abondon du tabac</div>
+                        </div>
+                    </div>             
+        </div>   
+    </div>
+    <!--END SLIP BASE--> 
+    
+<!--SLIP 1 STRESSED-->
+<div data-role="page" id="slip-stressed" class="trigger-page" ontouchmove="disableWebbScroll(event);">
+		<div data-role="content" style="padding:0;">
+                        <!-- header -->
+                        <div class="button-header pageHeader" ontouchmove="disableWebbScroll(event);">
+                                <a href="#triggers"><img src="images/icon_back.png" class="left-header-btn" /></a>
+                                <a onclick="showInstructions(true,false);"><img src="images/icon_fb.png" class="right-header-btn" /></a>
+                                <img class="button-header-img" src="images/header_640_3.png" alt="Break it off" />
+                        </div> 
+                        <div id="slip-stressed-scroll" class="scroll-wrapper" data-scroll="y">   
+                        <!-- trigger content -->  
+                        <div class="trigger-content">                          
+                                <h1>Vous n’avez pas fumé depuis <span class="blue" id="stessedTimeBeforeSlip">0 days!</span></h1>
+                                <p>Continuez comme ça. Rompre avec la cigarette demande beaucoup d’efforts, mais vous y arriverez si vous tenez bon.<br />
+                                <p>La prochaine fois que vous vous sentirez stressé(e), prenez de grandes inspirations. Comptez jusqu’à 10. Ou 100. Écoutez de la musique relaxante. Ne tombez pas dans le piège de la cigarette. Cela n’en vaut pas la peine.</p>
+                        </div>
+                        </div>
+                        <!-- call a coach footer -->           
+                        <div data-role="footer" class="call-footer pageFooter" ontouchmove="disableWebbScroll(event);">
+                            <div class="call-footer-wrapper">
+                                <a href="tel:+18663663667" ontouchstart="javascript:window.plugins.googleAnalyticsPlugin.trackEvent('Outbound', 'call', 'quit_coach', 0);" class="call-link"></a>
+                                <img src="images/icon_phone.png" class="call-footer-icon" />
+                                <div class="call-footer-text">Appeler un spécialiste de l’abondon du tabac</div>
+                            </div>
+                        </div>              
+        </div>        
+</div>
+<!--END SLIP 1 STRESSED--> 
+<!--SLIP 2 BORED-->
+<div data-role="page" id="slip-bored" class="trigger-page" ontouchmove="disableWebbScroll(event);">
+		<div data-role="content" style="padding:0;">
+                        <!-- header -->
+                        <div class="button-header pageHeader" ontouchmove="disableWebbScroll(event);">
+                                <a href="#triggers"><img src="images/icon_back.png" class="left-header-btn" /></a>
+                                <a onclick="showInstructions(true,false);"><img src="images/icon_fb.png" class="right-header-btn" /></a>
+                                <img class="button-header-img" src="images/header_640_3.png" alt="Break it off" />
+                        </div>
+                        <div id="slip-bored-scroll" class="scroll-wrapper" data-scroll="y"> 
+                        <!-- trigger content -->  
+                        <div class="trigger-content">                      
+                                <h1>Vous n’avez pas fumé depuis <span class="blue" id="boredTimeBeforeSlip">0 days!</span></h1>
+                            <p>Continuez comme ça. Rompre avec la cigarette demande beaucoup d’efforts, mais vous y arriverez si vous tenez bon.<br></br>
+                               La prochaine fois que vous vous ennuierez au point de vouloir en allumer une, sortez prendre l’air. Vous n’avez plus besoin d’être esclave de la cigarette. Adoptez un passe-temps qui puisse occuper votre corps de même que votre esprit.</p>
+
+                        </div> 
+                        </div>
+                        <!-- call a coach footer -->           
+                        <div data-role="footer" class="call-footer pageFooter" ontouchmove="disableWebbScroll(event);">
+                            <div class="call-footer-wrapper">
+                                <a href="tel:+18663663667" ontouchstart="javascript:window.plugins.googleAnalyticsPlugin.trackEvent('Outbound', 'call', 'quit_coach', 0);" class="call-link"></a>
+                                <img src="images/icon_phone.png" class="call-footer-icon" />
+                                <div class="call-footer-text">Appeler un spécialiste de l’abondon du tabac</div>
+                            </div>
+                        </div> 
+        </div>     
+</div>
+<!--END 2 BORED--> 
+<!--SLIP 3 TIPSY-->
+<div data-role="page" id="slip-tipsy" class="trigger-page" ontouchmove="disableWebbScroll(event);"> 
+		<div data-role="content" style="padding:0;">
+                        <!-- header -->
+                        <div class="button-header pageHeader" ontouchmove="disableWebbScroll(event);">
+                                <a href="#triggers"><img src="images/icon_back.png" class="left-header-btn" /></a>
+                                <a onclick="showInstructions(true,false);"><img src="images/icon_fb.png" class="right-header-btn" /></a>
+                                <img class="button-header-img" src="images/header_640_3.png" alt="Break it off" />
+                        </div>
+                        <div id="slip-tipsy-scroll" class="scroll-wrapper" data-scroll="y"> 
+                        <!-- trigger content -->  
+                        <div class="trigger-content">
+				                <h1>Vous n’avez pas fumé depuis <span class="blue" id="tipsyTimeBeforeSlip">0 days!</span></h1>
+				                <p>Continuez comme ça. Rompre avec la cigarette demande beaucoup d’efforts, mais vous y arriverez si vous tenez bon.<br /><br />
+                                Personne n’est ici pour juger. Ce sera beaucoup plus facile si tu te tiens loin de la drogue et de l'alcool. Cela vous t’aidera à briser le lien qui unit ces produits à la cigarette.</p>
+                        </div>
+                        </div>
+                        <!-- call a coach footer -->           
+                        <div data-role="footer" class="call-footer pageFooter" ontouchmove="disableWebbScroll(event);">
+                            <div class="call-footer-wrapper">
+                                <a href="tel:+18663663667" ontouchstart="javascript:window.plugins.googleAnalyticsPlugin.trackEvent('Outbound', 'call', 'quit_coach', 0);" class="call-link"></a>
+                                <img src="images/icon_phone.png" class="call-footer-icon" />
+                                <div class="call-footer-text">Appeler un spécialiste de l’abondon du tabac</div>
+                            </div>
+                        </div>                             
+            
+        </div>    
+</div>
+<!--END SLIP 3 TIPSY--> 
+<!--SLIP 4 CONCENTRATION-->
+<div data-role="page" id="slip-cant-concentrate" class="trigger-page" ontouchmove="disableWebbScroll(event);">
+		<div data-role="content" style="padding:0;">
+                        <!-- header -->
+                        <div class="button-header pageHeader" ontouchmove="disableWebbScroll(event);">
+                                <a href="#triggers"><img src="images/icon_back.png" class="left-header-btn" /></a>
+                                <a onclick="showInstructions(true,false);"><img src="images/icon_fb.png" class="right-header-btn" /></a>
+                                <img class="button-header-img" src="images/header_640_3.png" alt="Break it off" />
+                        </div>
+                        <div id="slip-cant-concentrate-scroll" class="scroll-wrapper" data-scroll="y"> 
+                        <!-- trigger content -->  
+                        <div class="trigger-content">                    
+				                <h1>Vous n’avez pas fumé depuis <span class="blue" id="concentrateTimeBeforeSlip">0 days!</span></h1>
+				                <p>Continuez comme ça. Rompre avec la cigarette demande beaucoup d’efforts, mais vous y arriverez si vous tenez bon.<br /><br />
+                                La prochaine fois que vous devrez vous concentrer, essayez de boire de l’eau. Cela éliminera les impuretés de votre système, tout en vous occupant les mains et la bouche.</p>
+                        </div>
+                        </div>
+            <!-- call a coach footer -->           
+            <div data-role="footer" class="call-footer pageFooter" ontouchmove="disableWebbScroll(event);">
+                <div class="call-footer-wrapper">
+                    <a href="tel:+18663663667" ontouchstart="javascript:window.plugins.googleAnalyticsPlugin.trackEvent('Outbound', 'call', 'quit_coach', 0);" class="call-link"></a>
+                    <img src="images/icon_phone.png" class="call-footer-icon" />
+                    <div class="call-footer-text">Appeler un spécialiste de l’abondon du tabac</div>
+                </div>
+            </div>                             
+            
+		</div>
+</div>
+<!--END SLIP 4 CONCENTRATION--> 
+<!--SLIP 5 RELAX-->
+<div data-role="page" id="slip-cant-relax" class="trigger-page" ontouchmove="disableWebbScroll(event);">
+		<div data-role="content" style="padding:0;">
+                        <!-- header -->
+                        <div class="button-header pageHeader" ontouchmove="disableWebbScroll(event);">
+                                <a href="#triggers"><img src="images/icon_back.png" class="left-header-btn" /></a>
+                                <a onclick="showInstructions(true,false);"><img src="images/icon_fb.png" class="right-header-btn" /></a>
+                                <img class="button-header-img" src="images/header_640_3.png" alt="Break it off" />
+                        </div>
+                        <div id="slip-cant-relax-scroll" class="scroll-wrapper" data-scroll="y">             
+                        <!-- trigger content -->  
+                        <div class="trigger-content">                      
+				                <h1>Vous n’avez pas fumé depuis <span class="blue" id="relaxTimeBeforeSlip">0 days!</span></h1>
+				                <p>Continuez comme ça. Rompre avec la cigarette demande beaucoup d’efforts, mais vous y arriverez si vous tenez bon.<br /><br />
+                                La prochaine fois que vous ressentirez le besoin de vous détendre, lisez un bon livre ou allez prendre une marche dans un parc. Il y a un million de façons de se détendre sans avoir à opter pour la cigarette. Essayez l’une de ces méthodes et constatez vous-même la différence.</p>
+                        </div>                        
+                        </div>
+                        <!-- call a coach footer -->           
+                        <div data-role="footer" class="call-footer pageFooter" ontouchmove="disableWebbScroll(event);">
+                            <div class="call-footer-wrapper">
+                                <a href="tel:+18663663667" ontouchstart="javascript:window.plugins.googleAnalyticsPlugin.trackEvent('Outbound', 'call', 'quit_coach', 0);" class="call-link"></a>
+                                <img src="images/icon_phone.png" class="call-footer-icon" />
+                                <div class="call-footer-text">Appeler un spécialiste de l’abondon du tabac</div>
+                            </div>
+                        </div> 
+        </div>   
+</div>
+<!--END 5 RELAX--> 
+<!--SLIP 6 IM STUFFED-->
+<div data-role="page" id="slip-stuffed" class="trigger-page" ontouchmove="disableWebbScroll(event);">
+		<div data-role="content" style="padding:0;">
+                        <!-- header -->
+                        <!-- header -->
+                        <div class="button-header pageHeader" ontouchmove="disableWebbScroll(event);">
+                                <a href="#triggers"><img src="images/icon_back.png" class="left-header-btn" /></a>
+                                <a onclick="showInstructions(true,false);"><img src="images/icon_fb.png" class="right-header-btn" /></a>
+                                <img class="button-header-img" src="images/header_640_3.png" alt="Break it off" />
+                        </div>
+                        <div id="slip-stuffed-scroll" class="scroll-wrapper" data-scroll="y">             
+                        <!-- trigger content -->  
+                        <div class="trigger-content">                     
+                                <h1>Vous n’avez pas fumé depuis <span class="blue" id="stuffedTimeBeforeSlip">0 days!</span></h1>
+                                <p>Continuez comme ça. Rompre avec la cigarette demande beaucoup d’efforts, mais vous y arriverez si vous tenez bon.<br /><br />
+                                La prochaine fois que vous mangerez, faites-le plus lentement. Appréciez le repas plutôt que de penser à ce qui arrivera quand vous sortirez de table. Et buvez beaucoup d’eau!</p>
+                        </div>  
+                        </div>
+                        <!-- call a coach footer -->           
+                        <div data-role="footer" class="call-footer pageFooter" ontouchmove="disableWebbScroll(event);">
+                            <div class="call-footer-wrapper">
+                                <a href="tel:+18663663667" ontouchstart="javascript:window.plugins.googleAnalyticsPlugin.trackEvent('Outbound', 'call', 'quit_coach', 0);" class="call-link"></a>
+                                <img src="images/icon_phone.png" class="call-footer-icon" />
+                                <div class="call-footer-text">Appeler un spécialiste de l’abondon du tabac</div>
+                            </div>
+                        </div> 
+		</div>    
+</div>
+<!--END SLIP 6 IM STUFFED--> 
+<!--SLIP 7 WITH OTHER SMOKERS-->
+<div data-role="page" id="slip-with-smokers" class="trigger-page" ontouchmove="disableWebbScroll(event);">
+		<div data-role="content" style="padding:0;">
+                        <!-- header -->
+                        <div class="button-header pageHeader" ontouchmove="disableWebbScroll(event);">
+                                <a href="#triggers"><img src="images/icon_back.png" class="left-header-btn" /></a>
+                                <a onclick="showInstructions(true,false);"><img src="images/icon_fb.png" class="right-header-btn" /></a>
+                                <img class="button-header-img" src="images/header_640_3.png" alt="Break it off" />
+                        </div>
+                        <div id="slip-with-smokers-scroll" class="scroll-wrapper" data-scroll="y">             
+                        <!-- trigger content -->  
+                        <div class="trigger-content">                     
+                                <h1>Vous n’avez pas fumé depuis <span class="blue" id="smokersTimeBeforeSlip">0 days!</span></h1>
+                            <p>Continuez comme ça. Rompre avec la cigarette demande beaucoup d’efforts, mais vous y arriverez si vous tenez bon.<br></br>                            
+                            Si vous trouvez trop dur de ne pas fumer en compagnie de vos amis fumeurs, évitez-les jusqu’à ce que vous ne vous sentiez plus aussi vulnérable. Pourquoi pas leur envoyer un message texte entre temps? S’ils sont de vrais amis, ils comprendront.</p>
+                        </div>     
+                        </div>
+                        <!-- call a coach footer -->           
+                        <div data-role="footer" class="call-footer pageFooter" ontouchmove="disableWebbScroll(event);">
+                            <div class="call-footer-wrapper">
+                                <a href="tel:+18663663667" ontouchstart="javascript:window.plugins.googleAnalyticsPlugin.trackEvent('Outbound', 'call', 'quit_coach', 0);" class="call-link"></a>
+                                <img src="images/icon_phone.png" class="call-footer-icon" />
+                                <div class="call-footer-text">Appeler un spécialiste de l’abondon du tabac</div>
+                            </div>
+                        </div> 
+		</div>        
+</div>
+<!--END SLIP 7 WITH OTHER SMOKERS--> 
+<!--SLIP 8 ANGRY-->
+<div data-role="page" id="slip-angry" class="trigger-page" ontouchmove="disableWebbScroll(event);">
+		<div data-role="content" style="padding:0;">
+                        <!-- header -->
+                        <div class="button-header pageHeader" ontouchmove="disableWebbScroll(event);">
+                                <a href="#triggers"><img src="images/icon_back.png" class="left-header-btn" /></a>
+                                <a onclick="showInstructions(true,false);"><img src="images/icon_fb.png" class="right-header-btn" /></a>
+                                <img class="button-header-img" src="images/header_640_3.png" alt="Break it off" />
+                        </div>
+                        <div id="slip-angry-scroll" class="scroll-wrapper" data-scroll="y">             
+                        <!-- trigger content -->  
+                        <div class="trigger-content">                      
+                                <h1>Vous n’avez pas fumé depuis <span class="blue" id="angryTimeBeforeSlip">0 days!</span></h1>
+                            <p>Continuez comme ça. Rompre avec la cigarette demande beaucoup d’efforts, mais vous y arriverez si vous tenez bon.<br></br>                            
+                            La prochaine fois que vous serez en colère, retirez-vous de la situation. Allez marcher, prenez quelques grandes inspirations ou comptez jusqu’à 100. Tout sauf une cigarette.</p>
+                        </div>
+                        </div>
+                        <!-- call a coach footer -->           
+                        <div data-role="footer" class="call-footer pageFooter" ontouchmove="disableWebbScroll(event);">
+                            <div class="call-footer-wrapper">
+                                <a href="tel:+18663663667" ontouchstart="javascript:window.plugins.googleAnalyticsPlugin.trackEvent('Outbound', 'call', 'quit_coach', 0);" class="call-link"></a>
+                                <img src="images/icon_phone.png" class="call-footer-icon" />
+                                <div class="call-footer-text">Appeler un spécialiste de l’abondon du tabac</div>
+                            </div>
+                        </div> 
+		</div>     
+</div>
+<!--END SLIP 8 ANGRY-->  
+
+<!--///////////////////////////////////////////////////////////////////// END OF ALL SLIPS PAGES 
+-->
+
+    
+    <!--/////////////////////////////////////////////////////////////// GETTING STARTED PAGE-->
+    <div data-role="page" id="getting_started" ontouchmove="disableWebbScroll(event);">
+        <div data-role="content" id="getting-started-content" style="padding:0;">
+            
+            <!-- <div class="logo-header"><img src="images/header_640.png" alt="Break it off" /></div>-->
+            <div class="logo-header"><img src="images/JeTeLaisse_Horizontal.jpg" alt="Je Te Laisse" /></div>
+            
+        <div id="getting_started-scroll" class="scroll-wrapper" data-scroll="y"> 
+             
+            <div id="getting-started-container">
+            <h1 class="lobsterbolditalic">Pour commencer</h1>
+            <form>
+                <p class="form-label">À quand remonte votre dernière cigarette:</p>
+                <div class="ui-grid-b">
+                    <div class="ui-block-a short_dd">
+                        <select id="date_last_cig_smoked_month" name="date_last_cig_smoked_month" class="date_last_cig_smoked" data-icon="false" onChange="checkEnableDone();" >
+                                <option value="moise">Moise</option>
+                                <option value="0">Janv</option>
+                                <option value="1">Févr</option>
+                                <option value="2">Mars</option>
+                                <option value="3">Avr</option>
+                                <option value="4">Mai</option>
+                                <option value="5">Juin</option>
+                                <option value="6">Juil</option>
+                                <option value="7">Août</option>
+                                <option value="8">Sept</option>
+                                <option value="9">Oct</option>
+                                <option value="10">Nov</option>
+                                <option value="11">Déc</option>
+                        </select>
+                    </div>
+                    <div class="ui-block-b short_dd">
+                        <select id="date_last_cig_smoked_day" name="date_last_cig_smoked_day" class="date_last_cig_smoked" data-icon="false" onChange="checkEnableDone();" >
+                                <option value="jour">Jour</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                                <option value="25">25</option>
+                                <option value="26">26</option>
+                                <option value="27">27</option>
+                                <option value="28">28</option>
+                                <option value="29">29</option>
+                                <option value="30">30</option>
+                                <option value="31">31</option>
+                        </select>
+                    </div>
+                    <div class="ui-block-c short_dd">
+                        <select id="date_last_cig_smoked_year" name="date_last_cig_smoked_year" class="date_last_cig_smoked" data-icon="false" onChange="checkEnableDone();" >
+                                <option value="année">Année</option>
+                                <option value="2008">2008</option>
+                                <option value="2009">2009</option>
+                                <option value="2010">2010</option>
+                                <option value="2011">2011</option>
+                                <option value="2012">2012</option>
+                                <option value="2013">2013</option>
+                                <option value="2014">2014</option>
+                                <option value="2015">2015</option>
+                        </select>
+                    </div>
+                </div>
+                <p class="form-label">Combien de cigarettes fumiez-vous par jour:</p>
+                <div class="ui-grid-b">
+                    <div class="ui-block-a short_dd">
+                        <select name="num_cigs_smoked_per_day" id="num_cigs_smoked_per_day" data-icon="false" onChange="checkEnableDone();" >
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                            <option value="32">32</option>
+                            <option value="33">33</option>
+                            <option value="34">34</option>
+                            <option value="35">35</option>
+                            <option value="36">36</option>
+                            <option value="37">37</option>
+                            <option value="38">38</option>
+                            <option value="39">39</option>
+                            <option value="40">40</option>
+                            <option value="41">41</option>
+                            <option value="42">42</option>
+                            <option value="43">43</option>
+                            <option value="44">44</option>
+                            <option value="45">45</option>
+                            <option value="46">46</option>
+                            <option value="47">47</option>
+                            <option value="48">48</option>
+                            <option value="49">49</option>
+                            <option value="50">50</option>
+                            <option value="51">51</option>
+                            <option value="52">52</option>
+                            <option value="53">53</option>
+                            <option value="54">54</option>
+                            <option value="55">55</option>
+                            <option value="56">56</option>
+                            <option value="57">57</option>
+                            <option value="58">58</option>
+                            <option value="59">59</option>
+                            <option value="60">60</option>
+                            <option value="61">61</option>
+                            <option value="62">62</option>
+                            <option value="63">63</option>
+                            <option value="64">64</option>
+                            <option value="65">65</option>
+                            <option value="66">66</option>
+                            <option value="67">67</option>
+                            <option value="68">68</option>
+                            <option value="69">69</option>
+                            <option value="70">70</option>
+                            <option value="71">71</option>
+                            <option value="72">72</option>
+                            <option value="73">73</option>
+                            <option value="74">74</option>
+                            <option value="75">75</option>
+                            <option value="76">76</option>
+                            <option value="77">77</option>
+                            <option value="78">78</option>
+                            <option value="79">79</option>
+                            <option value="80">80</option>
+                            <option value="81">81</option>
+                            <option value="82">82</option>
+                            <option value="83">83</option>
+                            <option value="84">84</option>
+                            <option value="85">85</option>
+                            <option value="86">86</option>
+                            <option value="87">87</option>
+                            <option value="88">88</option>
+                            <option value="89">89</option>
+                            <option value="90">90</option>
+                            <option value="91">91</option>
+                            <option value="92">92</option>
+                            <option value="93">93</option>
+                            <option value="94">94</option>
+                            <option value="95">95</option>
+                            <option value="96">96</option>
+                            <option value="97">97</option>
+                            <option value="98">98</option>
+                            <option value="99">99</option>
+                            <option value="100">100</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="long_dd">
+                    <p class="form-label">Quelle méthode utilisez-vous pour arrêter:</p>
+                        <select name="sel_breakup_methods" id="sel_breakup_methods" data-icon="false" onChange="checkEnableDone();" >
+                            <!--<option  value="breakupMethod">Breakup Methods</option>-->
+                            <option  value="Patch">Timbre</option>
+                            <option  value="Nicotine Gum">Gomme à la nicotine</option>
+                            <option  value="Nicotine Inhaler">Inhalateur de nicotine</option>
+                            <option  value="Nicotine Lozenge">Pastilles à la nicotine</option>
+                            <option  value="Acupuncture">Acuponcture</option>
+                            <option  value="Hypnosis">Hypnose</option>
+                            <option  value="Laser Therapy">Thérapie par le laser</option>
+                            <option  value="Prescription Medication">Médicaments sur ordonnance</option>
+                            <option  value="Telephone Counselling">Consultation téléphonique</option>
+                            <option  value="In Person Counselling">Consultation en personne</option>
+                            <option  value="Online Counselling">Consultation en ligne</option>
+                            <option  value="Self Help Quitting">Programmes d’auto-assistance</option>
+                            <option  value="Cold Turkey">Sevrage brutal</option>
+                        </select>
+                </div>
+                <div class="ui-grid-b">
+                    <div class="ui-block-a"><!-- href="#instructions"-->
+                        <div>
+                            <a onclick="startApp();" data-role="button" class="btn_done" id="DoneButton">Suivant</a>
+                        </div>
+                    </div>
+                </div>
+                <!--<br class="clear" />-->
+            </form>
+            </div>
+      
+    </div>              
+                
+		</div>
+    </div>
+
+    
+    <!--END GETTING STARTED PAGE--> 
+    
+    <!--/////////////////////////////////////////////////////////////////////START INSTRUCTIONS PAGE-->
+    <div data-role="page" id="instructions" ontouchmove="disableWebbScroll(event);">
+        <div id="instructions-wrapper">
+            <div id="instructions-header" ontouchmove="disableWebbScroll(event);">
+                <h1>Comment utiliser cette application</h1>
+                <a id="BackButton" onClick="leaveInstructions();" class="instructions-close"></a>
+            </div>   
+            <div id="instructions-content" data-scroll="y">
+                <h2 style="margin-top:0;">Composer avec les déclencheurs</h2>
+                <img name="screenshot" src="images/img_1.png" width="100%" alt="Screenshot" />
+                <p>Dès que vous ressentez le besoin de fumer, cliquez sur le bouton qui correspond à votre envie et obtenez de l’aide instantanément.</p>
+                
+                <div class="hr-line"></div>
+                
+                <h2>Appeler un spécialiste de l’abandon du tabac</h2>
+                <img name="screenshot" src="images/img_2.png" width="100%" alt="Screenshot" />
+                <p>C’est gratuit, confidentiel et vous décidez si vous voulez utiliser à nouveau nos services. Sans contraintes.</p>
+                
+                <div class="hr-line"></div>                                        
+                
+                <h2>Les écarts de parcours</h2>
+                <img name="screenshot" src="images/img_3.png" width="100%" alt="Screenshot" />
+                <p>Si vous avez un écart de parcours, documentez-le en appuyant sur l’icône de la cigarette.</p>
+                
+                <div class="hr-line"></div>                                        
+                
+                <h2>Votre Calendrier de l’abandon du tabagisme</h2>
+                <img name="screenshot" src="images/img_4.png" width="100%" alt="Screenshot" />                                        
+                <p>Quand vous pivoterez votre téléphone, vous verrez votre Calendrier personnel de l’abandon du tabagisme.</p>
+                
+                <div class="hr-line"></div>                                        
+                
+                <h2>Suivez vos progrès</h2>
+                <img name="screenshot" src="images/img_5.png" width="100%" alt="Screenshot" />                                          
+                <p>Voyez où et quand se déclenchent vos envies et vos écarts de parcours.</p>
+                
+                <div class="hr-line"></div>                                        
+                
+                <h2>Statistiques d’abandon</h2>
+                <img name="screenshot" src="images/img_6.png" width="100%" alt="Screenshot" />                                            
+                <p>Gardez la trace de tous vos arrêts.</p>
+                
+                <div class="hr-line"></div>                                        
+                
+                <h2>Oh, une dernière chose</h2>
+                <p>Chacun arrête de fumer de la façon qui lui convient; si une question vous préoccupe, parlez à un professionnel de la santé.</p>
+                
+                <div id="facebookShare">
+                    <div class="hr-line"></div>                                        
+                
+                    <h2>Partagez votre progrès hebdomadaire</h2>
+                    <a onclick="showWeeklyProgress();" class="blue">Pour partager votre progrès hebdomadaire sur Facebook, cliquez ici.</a>               
+                </div>
+                
+                <div class="hr-line"></div>                
+            
+                <div style="width:100%;" id="continue-wrapper">
+                        <a onclick="showTriggers();" data-role="button" class="btn_continue" style="font-family: lobsterbolditalic">Suivant</a>
+                </div>
+                <div style="text-align: center;"><img src="images/health_canada_logo2.png" id="instructions-logo" /></div>
+                
+                <!--<div class="hr-line"></div>--> 
+                
+                <span>2012 Société canadienne du cancer.<br />Tous droits réservés.<br />Téléassistance pour fumeurs 1-866-366-3667</span>
+                <br /><br />
+            </div>
+            <!--
+            <div id="instructions-footer" ontouchmove="disableWebbScroll(event);">
+                <a onclick="showTriggers();" data-role="button" class="btn_continue">Continue</a>
+            </div>-->
+        </div>
+        
+    </div>
+    
+    <!--END INSTRUCTIONS PAGE-->     
+     
+<!--//////////////////////////////////////////////////////////GRAPH TEST-->
+    <div data-role="page" id="graph" class="horizontal-page" ontouchmove="disableWebbScroll(event);">        
+		<div data-role="content" style="height:100%;margin:0;padding:0;">
+                    
+                        <!-- chart header -->
+                        <div class="chart-header" style="position:static;" ontouchmove="disableWebbScroll(event);">
+                                    <div class="chart-header-wrapper">
+                                        <div class="toggle-btn-left-active"></div><div class="toggle-btn-right"><a ontouchstart="showChart();" style="display:block;width:100%;height:100%;"></a></div>
+                                    </div>
+                                    <img src="images/header_timeline.png" alt="Break it up" class="chart-header-image" />
+                        </div>     
+                        
+                        <!-- graph content -->
+                        <div class="graph-content">
+                                 <!-- graph left label bar -->
+                                 <div class="graph-content-left" style="display:table">
+                                     <div class="graph-labels-wrapper"> <div class="graph-left-labels">Trophées</div> </div>
+                                     <div class="graph-labels-wrapper"> <div class="graph-left-labels">Déclencheurs</div> </div>
+                                     <div class="graph-labels-wrapper"> <div class="graph-left-labels">Écarts de<br/>parcours</div> </div>
+                                 </div>
+                                 <!-- graph container right div -->
+                                 <div class="graph-content-right">
+                                     <div class="graph-lines"></div>
+                                     <div class="graph-lines"></div>
+                                     <div class="graph-currentday" id="graph-currentday-field"></div>
+                                     <div class="graph-day">
+                                         <a ontouchstart="showGraphPreviousDay();"><img src="images/arrow_left2.png" id="arrow-left" /></a> Jour <span id="graph-current-day">19</span><a ontouchstart="showGraphNextDay();"><img src="images/arrow_right2.png" id="arrow-right" /></a>
+                                     </div>   
+                                     <div id="bubble" class="graph-bubble">
+                                         <p id="bubble-title">15 Straight</p>
+                                         <span id="bubble-date">Sunday Oct, 16, 2011</span>
+                                         <!--<a href="#" class="bubble-fb"></a>-->
+                                         <a id="bubble-button" class="bubble-map"></a>
+                                     </div> 
+                                     <div id="graph-overlay-container" class="graph-overlay-container" data-scroll="x">                                         
+                                         <!-- graph goes here -->
+                                         <div id="graph-canvas" class="graph-canvas"></div>
+                                         <!--<div style="position: relative; width 50%;"></div>-->
+                                         <!--<img src="images/testbild.png" style="width:300%" />-->
+                                         
+                                         <!-- bubble -->
+                                         <!--<div class="graph-bubble-left">
+                                             <p>15 Straight</p>
+                                             <span>Sunday Oct, 16, 2011</span>
+                                             <a href="#" class="bubble-fb"></a>
+                                             <a href="#" class="bubble-map"></a>
+                                         </div>-->
+                                        <!--<div class="graph-bubble-right">
+                                             <p>15 Straight</p>
+                                             <span>Sunday Oct, 16, 2011</span>
+                                             <a href="#" class="bubble-fb"></a>
+                                             <!--<a href="#" class="bubble-map"></a>-->
+                                        <!--</div>-->    
+                                     </div>
+                                 </div>
+
+                                 <div class="clear"></div>
+                        </div>                  
+		</div>        
+    </div> 
+<!--//////////////////////////////////////////////////////////END GRAPH TEST-->
+    
+
+<!--//////////////////////////////////////////////////////////CHART TEST-->
+<div data-role="page" id="chart" class="horizontal-page" ontouchmove="disableWebbScroll(event);">
+		<div data-role="content" style="height:100%;margin:0;padding:0;">
+                        <!-- chart header -->
+                        <div class="chart-header" style="position:static;" ontouchmove="disableWebbScroll(event);">
+                                    <div class="chart-header-wrapper">
+                                        <div class="toggle-btn-left"><a ontouchstart="showGraph();" style="display:block;width:100%;height:100%;"></a></div><div class="toggle-btn-right-active"></div>
+                                    </div>
+                                    <img src="images/header_stats.png" alt="Break it up" class="chart-header-image" />
+                        </div>
+                        <div class="chart-content">
+                            <div id="summary-list-wrapper" data-scroll="x">
+                                <ul id="summary-list">
+                                    <li>
+                                        <p>Je n’ai pas fumé pendant</p>
+                                        <h1 id="bootyCallCount">19</h1>
+                                        <p>jours</p>
+                                    </li>
+                                    <li>
+                                        <p>J’ai jeté</p>
+                                        <h1 id="dumpedCigarettesCount">114</h1>
+                                        <p>cigarettes</p>
+                                    </li>
+                                    <li>
+                                        <p>J’ai déjà épargné</p>
+                                        <h1 id="savedMoneyCount">$57.00</h1>
+                                        <!--<p>so far</p>-->
+                                    </li> 
+                                    <li>
+                                        <p>Cette année, je ferai des<br />économies d’environ</p>
+                                        <h1 id="leftToSave">$1,095</h1>
+                                        <!--<p>this year</p>-->
+                                    </li>     
+                                    <li>
+                                        <p>J’ai résisté à</p>
+                                        <h1 id="cravingCount" style="color:#e17039">23</h1>
+                                        <p>cigarettes</p>
+                                    </li>
+                                    <li>
+                                        <p>J’ai eu</p>
+                                        <h1 id="slipupCount" style="color:#e17039">10</h1>
+                                        <p>écarts</p>
+                                    </li>  
+                                    <li>
+                                        <p>Je suis plus susceptible<br />de fumer entre</p><!--I'm most vulnerable at"-->
+                                        <h1 id="commonVulnerabilityTime" style="color:#e17039">6-7<span>pm</span></h1>
+                                        <br />
+                                    </li>       
+                                    <li style="height:100%;">
+                                        <div style="float:left;">
+                                            <p>Mon déclencheur le plus fréquent est</p><!--Most common trigger is"-->
+                                            <h2 id="commonCraving" style="color:#e17039;margin-top:0;padding-top:0;">stress</h2>
+                                            <p>Je ne suis pas influencé par</p><!--Most likely to slip when I'm-->
+                                            <h2 id="commonSlipup" style="color:#e17039">tipsy</h2>
+                                        </div>
+                                        <div class="clear"></div>
+                                    </li> 
+                                    <li>
+                                        <div style="float:left;">
+                                            <p>Voici où j’ai eu un<br />écart de parcours</p><br />
+                                            <a onclick="showAllSlipupsOnMap();"><img src="images/symbol_slipups.png" alt="Slip-ups map" style="width:50%;" /></a> 
+                                        </div>
+                                        <div class="clear"></div>
+                                    </li>                   
+                                </ul>
+                            </div>      
+                        </div>
+		</div>  
+</div>
+<!--////////////////////////////////////////////////////////// END CHART -->
+    
+
+<!--////////////////////////////////////////////////////////// MAP PAGE -->
+<div data-role="page" id="map" ontouchmove="disableWebbScroll(event);">
+        <div data-role="content" id="map-content" style="padding: 0;">
+            <!-- chart header -->
+            <div class="chart-header" style="position: static; width: 100%;" ontouchmove="disableWebbScroll(event);">
+                        <a id="BackButton" onclick="leaveMap();" data-role="button" class="btn_map_back">retour</a>
+                        <img src="images/header_horz2.png" alt="Break it up" class="chart-header-image" />
+            </div>                    
+            <div id="map-container"></div>
+        </div>
+</div>
+<!--//////////////////////////////////////////////////////////END MAP-->
+
+    <!--  START ///// Weekly Progress /////// --->
+    <div class="lightbox" id="progressWindow" ontouchmove="disableWebbScroll(event);">
+        <div class="lightbox-content" ontouchmove="disableWebbScroll(event);">
+            <div class="lightbox-top-wrapper">
+                <div id="lightboxCaption" class="lightbox-top-left">
+                    Aimeriez-vous partager vos progrès hebdomadaires sur Facebook?
+                </div>
+                <a onclick="$('.lightbox').hide();"><img src="images/btn_close.png" class="lightbox-close" /></a>
+            </div>
+            <br class="clear" />
+            <div class="lightbox-bottom-wrapper">
+                <p id="progressContent">J’ai jeté [XXX] cigarettes, épargné environ $[XXX] et résisté à l’envie de fumer [XX] fois.</p>
+                <a onclick="postWeeklyUpdate();" class="lightbox-btn-yes">Oui</a> <a onclick="hideProgressBox();" class="lightbox-btn-no">Non</a> <a onclick="postPushNotification();" id="fshare" class="bubble-fb"></a>
+            </div>
+        </div>
+    </div><!---->   
+</body>
+</html>

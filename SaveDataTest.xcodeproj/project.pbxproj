@@ -7,6 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0716A8951486992A007BF7F4 /* splash_big.png in Resources */ = {isa = PBXBuildFile; fileRef = 0716A8931486992A007BF7F4 /* splash_big.png */; };
+		0716A8961486992A007BF7F4 /* splash_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 0716A8941486992A007BF7F4 /* splash_small.png */; };
+		0716A89A14869977007BF7F4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 0716A89914869977007BF7F4 /* Default.png */; };
+		0716A89C1486997C007BF7F4 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0716A89B1486997C007BF7F4 /* Default@2x.png */; };
+		0750D3AC14C0B60E00BE8D48 /* graph.png in Resources */ = {isa = PBXBuildFile; fileRef = 0750D3AB14C0B60E00BE8D48 /* graph.png */; };
+		0750D3AE14C0B62B00BE8D48 /* triggers.png in Resources */ = {isa = PBXBuildFile; fileRef = 0750D3AD14C0B62B00BE8D48 /* triggers.png */; };
+		0750D3B014C0B63E00BE8D48 /* relaxed.png in Resources */ = {isa = PBXBuildFile; fileRef = 0750D3AF14C0B63E00BE8D48 /* relaxed.png */; };
+		0750D3B214C0B64800BE8D48 /* slipps.png in Resources */ = {isa = PBXBuildFile; fileRef = 0750D3B114C0B64800BE8D48 /* slipps.png */; };
+		0767D4071480031800ADE04D /* www in Resources */ = {isa = PBXBuildFile; fileRef = 0767D4061480031800ADE04D /* www */; };
+		07BD4A8B14BC4B1B00161B72 /* GoogleAnalyticsPlugin.js in Sources */ = {isa = PBXBuildFile; fileRef = 07BD4A8514BC4B1B00161B72 /* GoogleAnalyticsPlugin.js */; };
+		07BD4A8C14BC4B1B00161B72 /* GoogleAnalyticsPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BD4A8614BC4B1B00161B72 /* GoogleAnalyticsPlugin.m */; };
+		07BD4A8D14BC4B1B00161B72 /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD4A8914BC4B1B00161B72 /* libGoogleAnalytics.a */; };
+		07BD4A8E14BC4B1B00161B72 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 07BD4A8A14BC4B1B00161B72 /* README.md */; };
+		07BD4A9014BC4B8900161B72 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD4A8F14BC4B8900161B72 /* CFNetwork.framework */; };
+		07BD4A9214BC4BA200161B72 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07BD4A9114BC4BA200161B72 /* libsqlite3.0.dylib */; };
 		07DD8B41147FFC74006D3DDC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD8B40147FFC74006D3DDC /* Foundation.framework */; };
 		07DD8B43147FFC74006D3DDC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD8B42147FFC74006D3DDC /* UIKit.framework */; };
 		07DD8B45147FFC74006D3DDC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07DD8B44147FFC74006D3DDC /* CoreGraphics.framework */; };
@@ -28,14 +43,45 @@
 		07DD8B70147FFC74006D3DDC /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 07DD8B6F147FFC74006D3DDC /* icon.png */; };
 		07DD8B72147FFC74006D3DDC /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07DD8B71147FFC74006D3DDC /* icon@2x.png */; };
 		07DD8B74147FFC74006D3DDC /* icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 07DD8B73147FFC74006D3DDC /* icon-72.png */; };
-		07DD8B77147FFC74006D3DDC /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 07DD8B76147FFC74006D3DDC /* Default.png */; };
-		07DD8B79147FFC74006D3DDC /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07DD8B78147FFC74006D3DDC /* Default@2x.png */; };
 		07DD8B7B147FFC74006D3DDC /* Capture.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 07DD8B7A147FFC74006D3DDC /* Capture.bundle */; };
 		07DD8B7D147FFC74006D3DDC /* PhoneGap.plist in Resources */ = {isa = PBXBuildFile; fileRef = 07DD8B7C147FFC74006D3DDC /* PhoneGap.plist */; };
 		07DD8B81147FFC74006D3DDC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 07DD8B80147FFC74006D3DDC /* AppDelegate.m */; };
+		07DE7AC2148E623A004C1932 /* ipad_horizontal.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 07DE7AC0148E623A004C1932 /* ipad_horizontal.jpg */; };
+		07DE7AC3148E623A004C1932 /* ipad_portrait.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 07DE7AC1148E623A004C1932 /* ipad_portrait.jpg */; };
+		07DE7AC7148E62B8004C1932 /* ipad_portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 07DE7AC5148E62B8004C1932 /* ipad_portrait.png */; };
+		76196CD6148C3117000F8A40 /* ChildBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 76196CCE148C3117000F8A40 /* ChildBrowser.bundle */; };
+		76196CD7148C3117000F8A40 /* ChildBrowser.js in Sources */ = {isa = PBXBuildFile; fileRef = 76196CCF148C3117000F8A40 /* ChildBrowser.js */; };
+		76196CD8148C3117000F8A40 /* ChildBrowserCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 76196CD1148C3117000F8A40 /* ChildBrowserCommand.m */; };
+		76196CD9148C3117000F8A40 /* ChildBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76196CD3148C3117000F8A40 /* ChildBrowserViewController.m */; };
+		76196CDA148C3117000F8A40 /* ChildBrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76196CD4148C3117000F8A40 /* ChildBrowserViewController.xib */; };
+		76196CDB148C3117000F8A40 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 76196CD5148C3117000F8A40 /* README.txt */; };
+		AD6E415E183816E900221174 /* Default-Landscape-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6E415C183816E900221174 /* Default-Landscape-ipad.png */; };
+		AD6E415F183816E900221174 /* Default-Portrait-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6E415D183816E900221174 /* Default-Portrait-ipad.png */; };
+		AD6E41641838182200221174 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6E41621838182200221174 /* Default.png */; };
+		AD6E41651838182200221174 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6E41631838182200221174 /* Default@2x.png */; };
+		AD6E416718381A8500221174 /* ipad_horizontal.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6E416618381A8500221174 /* ipad_horizontal.png */; };
+		AD6E416A1839497C00221174 /* iPad_Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6E41681839497B00221174 /* iPad_Landscape.png */; };
+		AD6E416B1839497C00221174 /* iPad_Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = AD6E41691839497C00221174 /* iPad_Portrait.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0716A8931486992A007BF7F4 /* splash_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = splash_big.png; path = Resources/splash/splash_big.png; sourceTree = "<group>"; };
+		0716A8941486992A007BF7F4 /* splash_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = splash_small.png; path = Resources/splash/splash_small.png; sourceTree = "<group>"; };
+		0716A89914869977007BF7F4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		0716A89B1486997C007BF7F4 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		0750D3AB14C0B60E00BE8D48 /* graph.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = graph.png; sourceTree = SOURCE_ROOT; };
+		0750D3AD14C0B62B00BE8D48 /* triggers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triggers.png; sourceTree = SOURCE_ROOT; };
+		0750D3AF14C0B63E00BE8D48 /* relaxed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = relaxed.png; sourceTree = SOURCE_ROOT; };
+		0750D3B114C0B64800BE8D48 /* slipps.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = slipps.png; sourceTree = SOURCE_ROOT; };
+		0767D4061480031800ADE04D /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
+		07BD4A8414BC4B1B00161B72 /* GoogleAnalyticsPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleAnalyticsPlugin.h; sourceTree = "<group>"; };
+		07BD4A8514BC4B1B00161B72 /* GoogleAnalyticsPlugin.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = GoogleAnalyticsPlugin.js; sourceTree = "<group>"; };
+		07BD4A8614BC4B1B00161B72 /* GoogleAnalyticsPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleAnalyticsPlugin.m; sourceTree = "<group>"; };
+		07BD4A8814BC4B1B00161B72 /* GANTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GANTracker.h; sourceTree = "<group>"; };
+		07BD4A8914BC4B1B00161B72 /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics.a; sourceTree = "<group>"; };
+		07BD4A8A14BC4B1B00161B72 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		07BD4A8F14BC4B8900161B72 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		07BD4A9114BC4BA200161B72 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		07DD8B3C147FFC73006D3DDC /* SaveDataTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SaveDataTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07DD8B40147FFC74006D3DDC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		07DD8B42147FFC74006D3DDC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -50,23 +96,39 @@
 		07DD8B54147FFC74006D3DDC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		07DD8B56147FFC74006D3DDC /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		07DD8B58147FFC74006D3DDC /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		07DD8B5C147FFC74006D3DDC /* SaveDataTest-Info.plist */ = {isa = PBXFileReference; path = "SaveDataTest-Info.plist"; sourceTree = "<group>"; };
+		07DD8B5C147FFC74006D3DDC /* SaveDataTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SaveDataTest-Info.plist"; sourceTree = "<group>"; };
 		07DD8B5E147FFC74006D3DDC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		07DD8B60147FFC74006D3DDC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		07DD8B62147FFC74006D3DDC /* SaveDataTest-Prefix.pch */ = {isa = PBXFileReference; path = "SaveDataTest-Prefix.pch"; sourceTree = "<group>"; };
+		07DD8B62147FFC74006D3DDC /* SaveDataTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SaveDataTest-Prefix.pch"; sourceTree = "<group>"; };
 		07DD8B63147FFC74006D3DDC /* PhoneGap.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PhoneGap.framework; path = /Users/Shared/PhoneGap/Frameworks/PhoneGap.framework; sourceTree = "<absolute>"; };
 		07DD8B68147FFC74006D3DDC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		07DD8B6C147FFC74006D3DDC /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Resources/es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		07DD8B6F147FFC74006D3DDC /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = Resources/icons/icon.png; sourceTree = "<group>"; };
 		07DD8B71147FFC74006D3DDC /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "Resources/icons/icon@2x.png"; sourceTree = "<group>"; };
 		07DD8B73147FFC74006D3DDC /* icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-72.png"; path = "Resources/icons/icon-72.png"; sourceTree = "<group>"; };
-		07DD8B76147FFC74006D3DDC /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/splash/Default.png; sourceTree = "<group>"; };
-		07DD8B78147FFC74006D3DDC /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Resources/splash/Default@2x.png"; sourceTree = "<group>"; };
 		07DD8B7A147FFC74006D3DDC /* Capture.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Capture.bundle; path = Resources/Capture.bundle; sourceTree = "<group>"; };
 		07DD8B7C147FFC74006D3DDC /* PhoneGap.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = PhoneGap.plist; sourceTree = "<group>"; };
-		07DD8B7F147FFC74006D3DDC /* AppDelegate.h */ = {isa = PBXFileReference; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
+		07DD8B7F147FFC74006D3DDC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
 		07DD8B80147FFC74006D3DDC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = "<group>"; };
-		07DD8B83147FFC74006D3DDC /* README */ = {isa = PBXFileReference; name = README; path = Plugins/README; sourceTree = "<group>"; };
+		07DD8B83147FFC74006D3DDC /* README */ = {isa = PBXFileReference; lastKnownFileType = text; name = README; path = Plugins/README; sourceTree = "<group>"; };
+		07DE7AC0148E623A004C1932 /* ipad_horizontal.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ipad_horizontal.jpg; sourceTree = "<group>"; };
+		07DE7AC1148E623A004C1932 /* ipad_portrait.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ipad_portrait.jpg; sourceTree = "<group>"; };
+		07DE7AC5148E62B8004C1932 /* ipad_portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipad_portrait.png; sourceTree = "<group>"; };
+		76196CCE148C3117000F8A40 /* ChildBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ChildBrowser.bundle; sourceTree = "<group>"; };
+		76196CCF148C3117000F8A40 /* ChildBrowser.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = ChildBrowser.js; sourceTree = "<group>"; };
+		76196CD0148C3117000F8A40 /* ChildBrowserCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChildBrowserCommand.h; sourceTree = "<group>"; };
+		76196CD1148C3117000F8A40 /* ChildBrowserCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChildBrowserCommand.m; sourceTree = "<group>"; };
+		76196CD2148C3117000F8A40 /* ChildBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChildBrowserViewController.h; sourceTree = "<group>"; };
+		76196CD3148C3117000F8A40 /* ChildBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChildBrowserViewController.m; sourceTree = "<group>"; };
+		76196CD4148C3117000F8A40 /* ChildBrowserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChildBrowserViewController.xib; sourceTree = "<group>"; };
+		76196CD5148C3117000F8A40 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		AD6E415C183816E900221174 /* Default-Landscape-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape-ipad.png"; sourceTree = "<group>"; };
+		AD6E415D183816E900221174 /* Default-Portrait-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait-ipad.png"; sourceTree = "<group>"; };
+		AD6E41621838182200221174 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/splash/Default.png; sourceTree = "<group>"; };
+		AD6E41631838182200221174 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Resources/splash/Default@2x.png"; sourceTree = "<group>"; };
+		AD6E416618381A8500221174 /* ipad_horizontal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ipad_horizontal.png; path = Resources/splash/ipad_horizontal.png; sourceTree = "<group>"; };
+		AD6E41681839497B00221174 /* iPad_Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPad_Landscape.png; sourceTree = "<group>"; };
+		AD6E41691839497C00221174 /* iPad_Portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPad_Portrait.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +136,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07BD4A9214BC4BA200161B72 /* libsqlite3.0.dylib in Frameworks */,
+				07BD4A9014BC4B8900161B72 /* CFNetwork.framework in Frameworks */,
 				07DD8B41147FFC74006D3DDC /* Foundation.framework in Frameworks */,
 				07DD8B43147FFC74006D3DDC /* UIKit.framework in Frameworks */,
 				07DD8B45147FFC74006D3DDC /* CoreGraphics.framework in Frameworks */,
@@ -88,6 +152,7 @@
 				07DD8B57147FFC74006D3DDC /* MobileCoreServices.framework in Frameworks */,
 				07DD8B59147FFC74006D3DDC /* CoreMedia.framework in Frameworks */,
 				07DD8B64147FFC74006D3DDC /* PhoneGap.framework in Frameworks */,
+				07BD4A8D14BC4B1B00161B72 /* libGoogleAnalytics.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,9 +166,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		07BD4A8314BC4B1B00161B72 /* GoogleAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				07BD4A8414BC4B1B00161B72 /* GoogleAnalyticsPlugin.h */,
+				07BD4A8514BC4B1B00161B72 /* GoogleAnalyticsPlugin.js */,
+				07BD4A8614BC4B1B00161B72 /* GoogleAnalyticsPlugin.m */,
+				07BD4A8714BC4B1B00161B72 /* GoogSDK */,
+				07BD4A8A14BC4B1B00161B72 /* README.md */,
+			);
+			path = GoogleAnalytics;
+			sourceTree = SOURCE_ROOT;
+		};
+		07BD4A8714BC4B1B00161B72 /* GoogSDK */ = {
+			isa = PBXGroup;
+			children = (
+				07BD4A8814BC4B1B00161B72 /* GANTracker.h */,
+				07BD4A8914BC4B1B00161B72 /* libGoogleAnalytics.a */,
+			);
+			path = GoogSDK;
+			sourceTree = "<group>";
+		};
 		07DD8B2E147FFC71006D3DDC = {
 			isa = PBXGroup;
 			children = (
+				AD6E41681839497B00221174 /* iPad_Landscape.png */,
+				AD6E41691839497C00221174 /* iPad_Portrait.png */,
+				AD6E415C183816E900221174 /* Default-Landscape-ipad.png */,
+				AD6E415D183816E900221174 /* Default-Portrait-ipad.png */,
+				07BD4A9114BC4BA200161B72 /* libsqlite3.0.dylib */,
+				07BD4A8F14BC4B8900161B72 /* CFNetwork.framework */,
+				0716A89B1486997C007BF7F4 /* Default@2x.png */,
+				0716A89914869977007BF7F4 /* Default.png */,
+				0767D4061480031800ADE04D /* www */,
 				07DD8B5A147FFC74006D3DDC /* SaveDataTest */,
 				07DD8B3F147FFC74006D3DDC /* Frameworks */,
 				07DD8B3D147FFC73006D3DDC /* Products */,
@@ -165,6 +260,10 @@
 		07DD8B65147FFC74006D3DDC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0750D3B114C0B64800BE8D48 /* slipps.png */,
+				0750D3AF14C0B63E00BE8D48 /* relaxed.png */,
+				0750D3AD14C0B62B00BE8D48 /* triggers.png */,
+				0750D3AB14C0B60E00BE8D48 /* graph.png */,
 				07DD8B7A147FFC74006D3DDC /* Capture.bundle */,
 				07DD8B66147FFC74006D3DDC /* en.lproj */,
 				07DD8B6A147FFC74006D3DDC /* es.lproj */,
@@ -203,8 +302,14 @@
 		07DD8B75147FFC74006D3DDC /* splash */ = {
 			isa = PBXGroup;
 			children = (
-				07DD8B76147FFC74006D3DDC /* Default.png */,
-				07DD8B78147FFC74006D3DDC /* Default@2x.png */,
+				AD6E416618381A8500221174 /* ipad_horizontal.png */,
+				AD6E41621838182200221174 /* Default.png */,
+				AD6E41631838182200221174 /* Default@2x.png */,
+				07DE7AC5148E62B8004C1932 /* ipad_portrait.png */,
+				07DE7AC0148E623A004C1932 /* ipad_horizontal.jpg */,
+				07DE7AC1148E623A004C1932 /* ipad_portrait.jpg */,
+				0716A8931486992A007BF7F4 /* splash_big.png */,
+				0716A8941486992A007BF7F4 /* splash_small.png */,
 			);
 			name = splash;
 			sourceTree = "<group>";
@@ -221,9 +326,26 @@
 		07DD8B82147FFC74006D3DDC /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				07BD4A8314BC4B1B00161B72 /* GoogleAnalytics */,
+				76196CCD148C3117000F8A40 /* ChildBrowser */,
 				07DD8B83147FFC74006D3DDC /* README */,
 			);
 			name = Plugins;
+			sourceTree = "<group>";
+		};
+		76196CCD148C3117000F8A40 /* ChildBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				76196CCE148C3117000F8A40 /* ChildBrowser.bundle */,
+				76196CCF148C3117000F8A40 /* ChildBrowser.js */,
+				76196CD0148C3117000F8A40 /* ChildBrowserCommand.h */,
+				76196CD1148C3117000F8A40 /* ChildBrowserCommand.m */,
+				76196CD2148C3117000F8A40 /* ChildBrowserViewController.h */,
+				76196CD3148C3117000F8A40 /* ChildBrowserViewController.m */,
+				76196CD4148C3117000F8A40 /* ChildBrowserViewController.xib */,
+				76196CD5148C3117000F8A40 /* README.txt */,
+			);
+			path = ChildBrowser;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,10 +408,31 @@
 				07DD8B70147FFC74006D3DDC /* icon.png in Resources */,
 				07DD8B72147FFC74006D3DDC /* icon@2x.png in Resources */,
 				07DD8B74147FFC74006D3DDC /* icon-72.png in Resources */,
-				07DD8B77147FFC74006D3DDC /* Default.png in Resources */,
-				07DD8B79147FFC74006D3DDC /* Default@2x.png in Resources */,
 				07DD8B7B147FFC74006D3DDC /* Capture.bundle in Resources */,
 				07DD8B7D147FFC74006D3DDC /* PhoneGap.plist in Resources */,
+				0767D4071480031800ADE04D /* www in Resources */,
+				0716A8951486992A007BF7F4 /* splash_big.png in Resources */,
+				0716A8961486992A007BF7F4 /* splash_small.png in Resources */,
+				0716A89A14869977007BF7F4 /* Default.png in Resources */,
+				0716A89C1486997C007BF7F4 /* Default@2x.png in Resources */,
+				76196CD6148C3117000F8A40 /* ChildBrowser.bundle in Resources */,
+				76196CDA148C3117000F8A40 /* ChildBrowserViewController.xib in Resources */,
+				76196CDB148C3117000F8A40 /* README.txt in Resources */,
+				07DE7AC2148E623A004C1932 /* ipad_horizontal.jpg in Resources */,
+				07DE7AC3148E623A004C1932 /* ipad_portrait.jpg in Resources */,
+				07DE7AC7148E62B8004C1932 /* ipad_portrait.png in Resources */,
+				07BD4A8E14BC4B1B00161B72 /* README.md in Resources */,
+				0750D3AC14C0B60E00BE8D48 /* graph.png in Resources */,
+				0750D3AE14C0B62B00BE8D48 /* triggers.png in Resources */,
+				0750D3B014C0B63E00BE8D48 /* relaxed.png in Resources */,
+				0750D3B214C0B64800BE8D48 /* slipps.png in Resources */,
+				AD6E415E183816E900221174 /* Default-Landscape-ipad.png in Resources */,
+				AD6E415F183816E900221174 /* Default-Portrait-ipad.png in Resources */,
+				AD6E41641838182200221174 /* Default.png in Resources */,
+				AD6E41651838182200221174 /* Default@2x.png in Resources */,
+				AD6E416718381A8500221174 /* ipad_horizontal.png in Resources */,
+				AD6E416A1839497C00221174 /* iPad_Landscape.png in Resources */,
+				AD6E416B1839497C00221174 /* iPad_Portrait.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,6 +461,11 @@
 			files = (
 				07DD8B61147FFC74006D3DDC /* main.m in Sources */,
 				07DD8B81147FFC74006D3DDC /* AppDelegate.m in Sources */,
+				76196CD7148C3117000F8A40 /* ChildBrowser.js in Sources */,
+				76196CD8148C3117000F8A40 /* ChildBrowserCommand.m in Sources */,
+				76196CD9148C3117000F8A40 /* ChildBrowserViewController.m in Sources */,
+				07BD4A8B14BC4B1B00161B72 /* GoogleAnalyticsPlugin.js in Sources */,
+				07BD4A8C14BC4B1B00161B72 /* GoogleAnalyticsPlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,13 +506,80 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		0750D3A914C08EBA00BE8D48 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					armv6,
+					armv7,
+				);
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Mickael Kanfi";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Mickael Kanfi";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				PROVISIONING_PROFILE = "0756CB71-36C3-4C78-BDC7-0016961F5797";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0756CB71-36C3-4C78-BDC7-0016961F5797";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Distribution;
+		};
+		0750D3AA14C08EBA00BE8D48 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Mickael Kanfi";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Mickael Kanfi";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = /Users/Shared/PhoneGap/Frameworks;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SaveDataTest/SaveDataTest-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = "PHONEGAP_FRAMEWORK=YES";
+				INFOPLIST_FILE = "SaveDataTest/SaveDataTest-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/GoogleAnalytics/GoogSDK\"",
+				);
+				OTHER_LDFLAGS = (
+					"-weak_framework",
+					UIKit,
+					"-weak_framework",
+					AVFoundation,
+					"-weak_framework",
+					CoreMedia,
+					"-weak_library",
+					/usr/lib/libSystem.B.dylib,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "0756CB71-36C3-4C78-BDC7-0016961F5797";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "0756CB71-36C3-4C78-BDC7-0016961F5797";
+				SKIP_INSTALL = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Distribution;
+		};
 		07DD8B84147FFC74006D3DDC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					armv6,
+					armv7,
+				);
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Corncrow Games AB";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Patrik Hansson (E3NNV3F6KA)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -379,7 +594,10 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				PROVISIONING_PROFILE = "AA4AFDEF-011A-412D-918F-551226E74EFF";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A88255EA-015C-4A06-B14E-5E2B9A9CED65";
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
@@ -387,9 +605,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					armv6,
+					armv7,
+				);
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Corncrow Games AB";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Patrik Hansson (E3NNV3F6KA)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
@@ -397,7 +619,10 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				PROVISIONING_PROFILE = "AA4AFDEF-011A-412D-918F-551226E74EFF";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A88255EA-015C-4A06-B14E-5E2B9A9CED65";
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -406,6 +631,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Corncrow Games AB";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Patrik Hansson (E3NNV3F6KA)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = /Users/Shared/PhoneGap/Frameworks;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -413,6 +640,10 @@
 				GCC_PREFIX_HEADER = "SaveDataTest/SaveDataTest-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "PHONEGAP_FRAMEWORK=YES";
 				INFOPLIST_FILE = "SaveDataTest/SaveDataTest-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/GoogleAnalytics/GoogSDK\"",
+				);
 				OTHER_LDFLAGS = (
 					"-weak_framework",
 					UIKit,
@@ -424,6 +655,9 @@
 					/usr/lib/libSystem.B.dylib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "C6F3CFDF-D74E-411B-A180-85D099CDA349";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A88255EA-015C-4A06-B14E-5E2B9A9CED65";
+				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -433,6 +667,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Corncrow Games AB";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Patrik Hansson (E3NNV3F6KA)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = /Users/Shared/PhoneGap/Frameworks;
@@ -440,6 +676,10 @@
 				GCC_PREFIX_HEADER = "SaveDataTest/SaveDataTest-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "PHONEGAP_FRAMEWORK=YES";
 				INFOPLIST_FILE = "SaveDataTest/SaveDataTest-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/GoogleAnalytics/GoogSDK\"",
+				);
 				OTHER_LDFLAGS = (
 					"-weak_framework",
 					UIKit,
@@ -451,11 +691,73 @@
 					/usr/lib/libSystem.B.dylib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "C6F3CFDF-D74E-411B-A180-85D099CDA349";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A88255EA-015C-4A06-B14E-5E2B9A9CED65";
+				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
+		};
+		07E5FB01148674B600331780 /* Ad Hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					armv6,
+					armv7,
+				);
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Ad Hoc";
+		};
+		07E5FB02148674B600331780 /* Ad Hoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = /Users/Shared/PhoneGap/Frameworks;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SaveDataTest/SaveDataTest-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = "PHONEGAP_FRAMEWORK=YES";
+				INFOPLIST_FILE = "SaveDataTest/SaveDataTest-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/GoogleAnalytics/GoogSDK\"",
+				);
+				OTHER_LDFLAGS = (
+					"-weak_framework",
+					UIKit,
+					"-weak_framework",
+					AVFoundation,
+					"-weak_framework",
+					CoreMedia,
+					"-weak_library",
+					/usr/lib/libSystem.B.dylib,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = "Ad Hoc";
 		};
 /* End XCBuildConfiguration section */
 
@@ -465,6 +767,8 @@
 			buildConfigurations = (
 				07DD8B84147FFC74006D3DDC /* Debug */,
 				07DD8B85147FFC74006D3DDC /* Release */,
+				0750D3A914C08EBA00BE8D48 /* Distribution */,
+				07E5FB01148674B600331780 /* Ad Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -474,8 +778,11 @@
 			buildConfigurations = (
 				07DD8B87147FFC74006D3DDC /* Debug */,
 				07DD8B88147FFC74006D3DDC /* Release */,
+				0750D3AA14C08EBA00BE8D48 /* Distribution */,
+				07E5FB02148674B600331780 /* Ad Hoc */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
